@@ -2,42 +2,42 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Magazyn
-{
-    private List<Pracownik> listaPracownikow = new ArrayList<Pracownik>();
-    private List<Produkt> listaProduktow= new ArrayList<Produkt>();
+public class Magazyn {
+    private List<Pracownik> pracownikList = new ArrayList<Pracownik>();
+    private List<Produkt> produktList = new ArrayList<Produkt>();
 
-    public void addPracownik(Pracownik pracownik)
-    {
-        listaPracownikow.add(pracownik);
+
+    public void dodajProdukt(Produkt produkt) {
+        produktList.add(produkt);
     }
 
-    public void wpiszPracownika (String nazwa)
-    {
-        Iterator<Pracownik> iterator = listaPracownikow.iterator();
-        while (iterator.hasNext())
-        {
-            Pracownik pracownikZListy = iterator.next();
-            if (pracownikZListy.getPESEL().equals(nazwa))
-            {
-                iterator.remove();
-            }
-        }
+    public void dodajPracownika(Pracownik pracownik) {
+        pracownikList.add(pracownik);
     }
-    public void wypiszPracownika (String nazwa)
-    {
-        for (int i = 0; i < listaPracownikow.size(); i++)
-        {
-            if (listaPracownikow.get(i).getPESEL().equals(nazwa))
-            {
-                System.out.println(listaPracownikow.get(i));
+
+    public void usunProdukt(String nazwa) {
+        for (Produkt p : produktList) {
+            if (p.getName().equalsIgnoreCase(nazwa)) {
+                produktList.remove(p);
+                break;
             }
         }
     }
 
-    public void wypiszPracownika1 (String nazwa)
-    {
-        System.out.println(listaPracownikow);
+    public void usunPracownika(String pesel) {
+        for (Pracownik p : pracownikList) {
+            if (p.getPesel().equalsIgnoreCase(pesel)) {
+                pracownikList.remove(p);
+                break;
+            }
+        }
+    }
+
+    public void wypiszPracownikow() {
+        pracownikList.forEach(System.out::println);
+    }
+
+    public void wypiszProdukty() {
+        produktList.forEach(System.out::println);
     }
 }
-
